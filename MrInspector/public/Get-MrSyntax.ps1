@@ -10,7 +10,7 @@ function Get-MrSyntax {
     commands and parameters within a PowerShell script.
 
 .PARAMETER Path
-    Path to one of more PowerShell PS1 script files.
+    Path to one of more PowerShell PS1 or PSM1 script files.
 
 .EXAMPLE
     Get-MrSyntax -Path C:\Scripts\MyScript.ps1
