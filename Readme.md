@@ -1,0 +1,4 @@
+# Inspector
+
+PowerShell Syntax Inspector
+
