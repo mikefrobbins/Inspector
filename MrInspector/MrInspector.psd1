@@ -12,7 +12,7 @@
 RootModule = 'MrInspector.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -63,13 +63,13 @@ Description = 'PowerShell Syntax Inspector'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+FormatsToProcess = 'MrInspector.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-MrSyntax'
+FunctionsToExport = 'Get-MrMandatoryParameter', 'Get-MrParameterSet', 'Get-MrSyntax', 'Resolve-MrParameterSet', 'Test-MrMandatoryParameter', 'Test-MrParameter', 'Test-MrParameterSet', 'Test-MrSyntax'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 # CmdletsToExport = @()
