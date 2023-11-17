@@ -37,7 +37,7 @@
                                 <PropertyName>Parameter</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Aliases</PropertyName>
+                                <PropertyName>Alias</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Mandatory</PropertyName>
