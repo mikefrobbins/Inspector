@@ -20,6 +20,8 @@
                     </TableColumnHeader>
                     <TableColumnHeader>
                     </TableColumnHeader>
+                    <TableColumnHeader>
+                    </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
                     <TableRowEntry>
@@ -32,6 +34,9 @@
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>ParameterSet</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>IsDefault</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Parameter</PropertyName>

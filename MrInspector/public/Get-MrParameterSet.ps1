@@ -50,6 +50,7 @@ function Get-MrParameterSet {
                             Name = $n
                             CmdletName = $Cmdlet.Name
                             ParameterSet = $ParameterSet.Name
+                            IsDefault = $ParameterSet.IsDefault
                             Parameter = $Parameter.Name
                             Alias = $Parameter.Aliases -join ', '
                             Mandatory = $Parameter.IsMandatory
