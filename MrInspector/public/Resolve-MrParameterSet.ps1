@@ -68,7 +68,7 @@ Resolve-MrParameterSet -Cmdlet Get-Service, Get-Process -Parameter DisplayName, 
         }
 
         [pscustomobject]@{
-            Command = $Command
+            Command = $command
             ParameterSet = $inUseParamterSet
         }
     }
