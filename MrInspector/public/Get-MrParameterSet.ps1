@@ -1,23 +1,18 @@
-﻿#Requires -Version 4.0
+﻿#Requires -Version 3.0
 function Get-MrParameterSet {
 
 <#
 .SYNOPSIS
-    Lists parameters by parameter sets, parameter aliases, and whether parameters are mandatory.
+Retrieves parameter sets for specified PowerShell commands.
 
 .DESCRIPTION
-    Get-MrParameterSet is a PowerShell function that lists detailed information about a command's
-    parameter sets including parameter set names, parameter names, parameter aliases, and if
-    parameters are mandatory.
+The Get-MrParameterSet function retrieves parameter set information for the specified PowerShell command names. It lists each parameter set along with its parameters and identifies the default parameter set.
 
 .PARAMETER Name
-    Name of one or more PowerShell commands.
+Specifies an array of command names. This parameter is mandatory and accepts values from the pipeline.
 
 .EXAMPLE
-    Get-MrParameterSet -Name Get-Alias, Get-Command
-
-.EXAMPLE
-    'Get-Alias', 'Get-Command' | Get-MrParameterSet
+Get-MrParameterSet -Name Get-ChildItem, Set-Location
 
 .NOTES
     Author:  Mike F. Robbins
@@ -33,30 +28,24 @@ function Get-MrParameterSet {
 
     PROCESS {
         foreach ($n in $Name) {
-            $cmdlet = Get-Command -Name $n -ErrorAction SilentlyContinue
+            # Retrieve command information
+            $commandInfo = Get-Command -Name $n -ErrorAction SilentlyContinue
 
-            if ($null -eq $cmdlet) {
-                Write-Warning "Command '$n' not found."
-                continue
-            }
-
-            if ($cmdlet.CommandType -eq 'Alias') {
-                $cmdlet = Get-Command -Name $cmdlet.ResolvedCommand
-            }
-
-            foreach ($parameterSet in $cmdlet.ParameterSets) {
-                foreach ($parameter in $parameterSet.Parameters) {
+            # Check if command exists
+            if ($commandInfo) {
+                # Iterate through each parameter set of the command
+                foreach ($parameterSet in $commandInfo.ParameterSets) {
+                    # Create and output custom object with parameter set details
                     [pscustomobject]@{
                         Name = $n
-                        CmdletName = $Cmdlet.Name
-                        ParameterSet = $ParameterSet.Name
-                        IsDefault = $ParameterSet.IsDefault
-                        Parameter = $Parameter.Name
-                        Alias = $Parameter.Aliases -join ', '
-                        Mandatory = $Parameter.IsMandatory
-                        PSTypeName = 'Mr.GetParameterSet'
+                        ParameterSets = $parameterSet.Name
+                        Parameters = $parameterSet.Parameters
+                        IsDefault = $parameterSet.IsDefault
                     }
                 }
+            }
+            else {
+                Write-Warning "Command '$n' not found."
             }
         }
     }

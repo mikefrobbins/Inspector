@@ -2,9 +2,9 @@
 <Configuration>
     <ViewDefinitions>
         <View>
-            <Name>Mr.GetParameterSet</Name>
+            <Name>Mr.GetParameter</Name>
             <ViewSelectedBy>
-                <TypeName>Mr.GetParameterSet</TypeName>
+                <TypeName>Mr.GetParameter</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>

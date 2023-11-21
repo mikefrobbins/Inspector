@@ -28,9 +28,9 @@
     )
 
     try {
-        $commandParamSets = Get-MrParameterSet -Name $Name -ErrorAction Stop
+        $commandParamSets = Get-MrParameter -Name $Name -ErrorAction Stop
     } catch {
-        Write-Error "Command '$Name' not found or error in Get-MrParameterSet."
+        Write-Error "Command '$Name' not found."
         return
     }
 

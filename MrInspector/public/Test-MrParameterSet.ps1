@@ -40,7 +40,7 @@ function Test-MrParameterSet {
     )
 
     # Retrieve parameters for the specified cmdlet and parameter set
-    $params = Get-MrParameterSet -Name $Cmdlet |
+    $params = Get-MrParameter -Name $Cmdlet |
               Where-Object ParameterSet -eq $ParameterSet
 
     # Compare the provided parameter with the retrieved parameter set
