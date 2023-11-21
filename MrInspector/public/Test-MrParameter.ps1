@@ -1,41 +1,62 @@
-﻿function Test-MrParameter {
+﻿#Requires -Version 4.0
+function Test-MrParameter {
+
+<#
+.SYNOPSIS
+Tests the presence and type of parameters in specified cmdlets.
+
+.DESCRIPTION
+The Test-MrParameter function checks whether the given parameters are present in the specified cmdlets and determines their type (Parameter or Alias). It returns an object with the cmdlet name, command type, parameter name, parameter type, and an additional PSTypeName for each parameter.
+
+.PARAMETER CmdletName
+Specifies one or more cmdlets to check for the presence of parameters.
+
+.PARAMETER ParameterName
+Specifies one or more parameters to check in the specified cmdlets.
+
+.EXAMPLE
+Test-MrParameter -CmdletName Get-Process, Get-Service -ParameterName Id, Name
+
+.NOTES
+    Author:  Mike F. Robbins
+    Website: https://mikefrobbins.com/
+    Twitter: @mikefrobbins
+#>
+
     [CmdletBinding()]
     param (
-        $Cmdlet,
-        $Parameter
+        [Parameter(Mandatory)]
+        [string[]]$CmdletName,
+
+        [Parameter(Mandatory)]
+        [string[]]$ParameterName
     )
 
-    foreach ($Command in $Cmdlet) {
-        $cmd = ''
+    foreach ($cmdlet in $CmdletName) {
         try {
-            $cmd = Get-Command -Name $Command -ErrorAction Stop
-            $CommandType = $cmd.CommandType
+            $cmd = Get-Command -Name $cmdlet -ErrorAction Stop
+            $commandType = $cmd.CommandType
         } catch {
-            $CommandType = 'NotFound'
+            Write-Error -Message "Cmdlet '$Cmdlet' not found."
+            continue
         }
 
-        foreach ($Param in $Parameter) {
-            switch ($Param) {
-                {$_ -in $cmd.parameters.values.name} {$ParamType = 'Parameter'}
-                {$_ -in $cmd.parameters.values.aliases} {$ParamType = 'Alias'}
-                Default {$ParamType = 'Unknown'}
+        foreach ($param in $ParameterName) {
+            switch ($param) {
+                {$_ -in $cmd.parameters.keys} {$paramType = 'Parameter'}
+                {$_ -in $cmd.parameters.Values.aliases} {$paramType = 'Alias'}
+                Default {$paramType = 'Unknown'}
             }
 
             [pscustomobject]@{
-                Name = $Command
-                CommandType = $CommandType
-                Parameter = $Param
-                ParameterName = if ($CommandType -ne 'Alias') {
-                                    $Param
-                                } else {
-                                    $cmd.parameters.values.Where({$_.Aliases -eq $Param}).name
-                                }
-                ParameterType = $ParamType
+                Name = $Cmdlet
+                CommandType = $commandType
+                Parameter = $param
+                ParameterName = if ($paramType -ne 'Alias') {$param}
+                                else {$cmd.parameters.Values.Where({$_.Aliases -contains $param}).Name}
+                ParameterType = $paramType
                 PSTypeName = 'Mr.TestParameter'
             }
-
         }
-
     }
-
 }

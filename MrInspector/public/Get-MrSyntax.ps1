@@ -22,8 +22,8 @@ function Get-MrSyntax {
     Get-MrSyntax -Path (Get-ChildItem -Path C:\Scripts\*.ps1)
 
 .NOTES
-    Author:  Mike F Robbins
-    Website: https://mikefrobbins.com
+    Author:  Mike F. Robbins
+    Website: https://mikefrobbins.com/
     Twitter: @mikefrobbins
 #>
 
