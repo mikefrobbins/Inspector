@@ -69,7 +69,7 @@ FormatsToProcess = 'MrInspector.ps1xml'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-MrMandatoryParameter', 'Get-MrParameterSet', 'Get-MrSyntax', 'Resolve-MrParameterSet', 'Test-MrMandatoryParameter', 'Test-MrParameter', 'Test-MrParameterSet', 'Test-MrSyntax', 'Get-MrParameter', 'Resolve-MrCommand', 'Resolve-MrParameterAlias'
+FunctionsToExport = 'Get-MrMandatoryParameter', 'Get-MrParameter', 'Get-MrParameterAlias', 'Get-MrParameterSet', 'Get-MrSyntax', 'Resolve-MrCommand', 'Resolve-MrParameterAlias', 'Resolve-MrParameterSet', 'Test-MrMandatoryParameter', 'Test-MrParameter', 'Test-MrParameterSet', 'Test-MrSyntax'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 # CmdletsToExport = @()
@@ -129,5 +129,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-
-
